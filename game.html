@@ -1,16 +1,1 @@
-<!doctype html>
-<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Afterlight OMEGA — Game</title></head><body><div id="boot" style="font-family:system-ui;background:#071016;color:#ecf7f3;min-height:100vh;display:grid;place-items:center;padding:24px"><div>Đang tải Afterlight OMEGA…</div></div><script>
-(async()=>{
-  try{
-    const parts=['game-data/part1.txt','game-data/part2.txt','game-data/part3.txt','game-data/part4.txt','game-data/part5.txt'];
-    const b64=(await Promise.all(parts.map(p=>fetch(p,{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('Không tải được '+p);return r.text();})))).join('').trim();
-    const bin=atob(b64), bytes=new Uint8Array(bin.length);
-    for(let i=0;i<bin.length;i++)bytes[i]=bin.charCodeAt(i);
-    const stream=new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'));
-    const html=await new Response(stream).text();
-    document.open();document.write(html);document.close();
-  }catch(err){
-    document.body.innerHTML='<main style="font-family:system-ui;background:#071016;color:#ecf7f3;min-height:100vh;display:grid;place-items:center;padding:24px"><section style="max-width:700px"><h1>Không thể tải game</h1><p>'+String(err.message||err)+'</p><p>Hãy tải lại trang. Nếu lỗi vẫn còn, kiểm tra GitHub Pages đã triển khai đầy đủ thư mục <code>game-data</code>.</p></section></main>';
-  }
-})();
-</script></body></html>
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Afterlight OMEGA</title><style>html,body{margin:0;background:#030709;color:#eaf8f4;font-family:system-ui,sans-serif;height:100%}body{display:flex;align-items:center;justify-content:center}.box{max-width:720px;padding:32px;border:1px solid #28434a;border-radius:20px;background:#071014}code{color:#77f2d1}</style></head><body><div class="box"><h1>Afterlight OMEGA</h1><p>Đang chuẩn bị bản game đầy đủ…</p><p>Nếu trang này không tự tải, hãy tải bản phát hành HTML từ repository.</p></div></body></html>
